@@ -13,7 +13,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 // Import App CSS
 import './App.css';
 // Import App components
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { IonApp, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Authentication from './pages/auth/Authentication';
@@ -28,9 +28,11 @@ const App: React.FC = () => (
       <IonReactRouter>
         <div className="flex w-full h-screen overflow-hidden flex-col bg-white dark:bg-zinc-950 font-quicksand">
 
-          {/* <Authentication /> */}
-
-          <Home />
+          <Switch>
+            <Route path="/auth" component={Authentication} />
+            <Route path="/home" component={Home} />
+            <Route path="/" render={() => <Redirect to="/auth" />} />
+          </Switch>
 
         </div>
       </IonReactRouter>
