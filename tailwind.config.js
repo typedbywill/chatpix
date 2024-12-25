@@ -8,10 +8,13 @@ export default {
     extend: {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
+        quicksand: ['Quicksand', 'sans-serif'],
       }
     },
   },
   darkMode: 'class',
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 }
 

@@ -17,19 +17,25 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Authentication from './pages/auth/Authentication';
+import { ThemeProvider } from './context/ThemeContext';
+import Home from './pages/home/Home';
 
 setupIonicReact();
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <div className="flex w-full h-screen overflow-hidden flex-col bg-white dark:bg-neutral-950 font-montserrat">
+  <ThemeProvider>
+    <IonApp>
+      <IonReactRouter>
+        <div className="flex w-full h-screen overflow-hidden flex-col bg-white dark:bg-zinc-950 font-quicksand">
 
-      <Authentication />
+          {/* <Authentication /> */}
 
-      </div>
-    </IonReactRouter>
-  </IonApp>
+          <Home />
+
+        </div>
+      </IonReactRouter>
+    </IonApp>
+  </ThemeProvider>
 );
 
 export default App;

@@ -6,9 +6,9 @@ function Authentication() {
   return (
     <section className='flex flex-col w-full h-full'>
 
-      {/* <Login /> */}
+      <Login />
 
-      <SignUp />
+      {/* <SignUp /> */}
       
     </section>
   )
