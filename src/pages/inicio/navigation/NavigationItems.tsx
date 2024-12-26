@@ -1,5 +1,6 @@
 import { PiChats, PiChatsFill, PiMagnifyingGlass, PiMagnifyingGlassFill, PiUser, PiUserFill } from "react-icons/pi"
 import Conversas from "../sections/conversas/Conversas"
+import Perfil from "../sections/perfil/Perfil"
 
 export default [
   {
@@ -7,7 +8,7 @@ export default [
     icon: <PiUser />,
     iconSelected: <PiUserFill />,
     route: '/perfil',
-    component: Conversas
+    component: Perfil
   },
   {
     name: 'Explorar',
