@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import { useEffect, useState } from "react";
-import { PiCircle, PiEraser, PiMagnifyingGlass, PiSealCheckFill, PiX, PiXCircle } from "react-icons/pi";
+import { useState } from "react";
+import { PiMagnifyingGlass, PiSealCheckFill, PiXCircle } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 export default function Chats() {
   return (
@@ -42,6 +43,7 @@ function ChatsHeader() {
 }
 
 function ChatsBody() {
+  
   const chats = [
     { id: 1, name: "João Silva", message: "Oi, tudo bem?", time: "10:30", avatar: "https://randomuser.me/api/portraits/men/1.jpg", tempoRestante: 0, online: true, verificado: true },
     { id: 2, name: "Maria Souza", message: "Enviou uma foto", time: "09:45", avatar: "https://randomuser.me/api/portraits/women/2.jpg", tempoRestante: 1, online: false, verificado: false },
@@ -53,7 +55,11 @@ function ChatsBody() {
     <div className='flex flex-col w-full overflow-y-auto'>
 
       {chats.map(({ id, name, message, time, avatar, tempoRestante, online, verificado }) => (
-        <div key={id} className='flex items-center p-4 border-b border-gray-200 dark:border-zinc-800 hover:bg-gray-100 dark:hover:bg-zinc-900 cursor-pointer transition-all'>
+        <Link
+          to={`/inicio/conversas/${id}`}
+          key={id}
+          className='flex items-center p-4 border-b border-gray-200 dark:border-zinc-800 hover:bg-gray-100 dark:hover:bg-zinc-900 cursor-pointer transition-all'
+        >
 
           <div className={clsx('min-w-12 min-h-12 rounded-full flex-shrink-0 mr-4 transition-all relative')}>
 
@@ -96,7 +102,7 @@ function ChatsBody() {
               </span>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

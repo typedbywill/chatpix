@@ -1,13 +1,28 @@
 import React from 'react'
 import Chats from './chats/Chats'
+import { Route, Switch } from 'react-router'
+import Chat from './chat/Chat'
 
 function Conversas() {
   return (
     <div className='flex flex-col w-full h-full overflow-auto'>
 
-      <ConversasHeader />
+      <Switch>
 
-      <Chats />
+        <Route
+          exact
+          path='/inicio/conversas'
+          render={() => (<>
+            <ConversasHeader />
+            <Chats />
+          </>)} />
+
+        <Route
+          path='/inicio/conversas/:chatId'
+          component={Chat}
+        />
+
+      </Switch>
 
     </div>
   )
