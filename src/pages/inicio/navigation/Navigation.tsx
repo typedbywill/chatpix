@@ -45,7 +45,7 @@ function RenderNavigationItem(params:
 
   return (
     <Link
-      to={'/home' + params.route}
+      to={'/inicio' + params.route}
       onClick={params.onClick}
       className={
         clsx('flex w-full h-full items-center justify-center select-none cursor-pointer',
@@ -54,8 +54,14 @@ function RenderNavigationItem(params:
     >
       <div className='flex flex-col items-center justify-center gap-1'>
 
-        <div className='flex items-center justify-center text-2xl'>
-          {CurrentIcon}
+        <div className='flex items-center justify-center text-2xl relative'>
+
+          <span>{CurrentIcon}</span>
+
+          {params.hasUpdates && (
+            <div className='absolute animate-pulse -top-1 -right-1 w-2 h-2 bg-emerald-500 dark:bg-emerald-600 rounded-full shadow-sm'></div>
+          )}
+
         </div>
 
         <div className='flex items-center justify-center text-xs transition-all font-semibold'>

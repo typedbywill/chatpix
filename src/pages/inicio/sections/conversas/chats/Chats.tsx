@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import { PiCheck, PiMagnifyingGlass, PiSealCheckFill } from "react-icons/pi";
+import { PiCircle, PiEraser, PiMagnifyingGlass, PiSealCheckFill, PiX, PiXCircle } from "react-icons/pi";
 
 export default function Chats() {
   return (
@@ -12,15 +12,30 @@ export default function Chats() {
 }
 
 function ChatsHeader() {
+
+  const [search, setSearch] = useState('');
+
   return (
     <div className='flex w-full items-center justify-between px-4 py-2'>
       <div className="relative flex items-center justify-center w-full">
+
         <input
           type='text'
           placeholder='Pesquisar conversas'
-          className='w-full pl-12 px-4 py-2 bg-gray-100 dark:bg-zinc-900 rounded-full focus:outline-none caret-emerald-500'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className='w-full px-10 py-2 bg-gray-100 dark:bg-zinc-900 rounded-full focus:outline-none caret-emerald-500'
         />
-        <PiMagnifyingGlass className='absolute left-4 text-gray-400 dark:text-gray-500 text-2xl' />
+
+        <PiMagnifyingGlass className='absolute left-3 text-gray-400 dark:text-gray-500 text-2xl' />
+
+        <PiXCircle
+          className={clsx('absolute right-3 text-gray-400 dark:text-gray-500 text-2xl cursor-pointer transition-all bg-gray-100 dark:bg-zinc-900',
+            search.length === 0 ? 'opacity-0' : 'opacity-100'
+          )}
+          onClick={() => setSearch('')}
+        />
+
       </div>
     </div>
   );
@@ -38,7 +53,7 @@ function ChatsBody() {
     <div className='flex flex-col w-full overflow-y-auto'>
 
       {chats.map(({ id, name, message, time, avatar, tempoRestante, online, verificado }) => (
-        <div key={id} className='flex items-center p-4 border-b border-gray-200 dark:border-zinc-800 hover:bg-gray-100 dark:hover:bg-zinc-900 cursor-pointer'>
+        <div key={id} className='flex items-center p-4 border-b border-gray-200 dark:border-zinc-800 hover:bg-gray-100 dark:hover:bg-zinc-900 cursor-pointer transition-all'>
 
           <div className={clsx('min-w-12 min-h-12 rounded-full flex-shrink-0 mr-4 transition-all relative')}>
 

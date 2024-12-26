@@ -18,7 +18,7 @@ import { IonApp, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Authentication from './pages/auth/Authentication';
 import { ThemeProvider } from './context/ThemeContext';
-import Home from './pages/home/Home';
+import Inicio from './pages/inicio/Inicio';
 
 setupIonicReact();
 
@@ -30,7 +30,7 @@ const App: React.FC = () => (
 
           <Switch>
             <Route path="/auth" component={Authentication} />
-            <Route path="/home" component={Home} />
+            <Route path="/inicio" component={Inicio} />
             <Route path="/" render={() => <Redirect to="/auth" />} />
           </Switch>
 

@@ -20,9 +20,10 @@ export default [
     name: 'Conversas',
     icon: <PiChats />,
     iconSelected: <PiChatsFill />,
-    notificationsCount: 5,
+    hasUpdates: true,
     route: '/conversas',
-    component: Conversas
+    component: Conversas,
+    default: true
   },
 ] as NavigationItem[]
 
@@ -30,7 +31,8 @@ export type NavigationItem = {
   name: string
   icon: JSX.Element
   iconSelected: JSX.Element
-  notificationsCount?: number
+  hasUpdates?: boolean
   route: string,
   component: React.FC
+  default?: boolean
 }
