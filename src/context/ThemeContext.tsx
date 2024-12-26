@@ -13,7 +13,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const [theme, setTheme] = useState<Theme>(() => {
     const storedTheme = localStorage.getItem('theme');
-    return storedTheme ? (storedTheme as Theme) : 'dark';
+    return storedTheme ? (storedTheme as Theme) : 'light';
   });
 
   const toggleTheme = () => {

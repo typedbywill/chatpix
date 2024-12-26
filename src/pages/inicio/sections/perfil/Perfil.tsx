@@ -1,5 +1,6 @@
 import React from 'react';
-import { PiArrowCircleDown, PiArrowCircleUp, PiArrowLineRight, PiArrowRight, PiCaretRightFill, PiCreditCard, PiUser } from 'react-icons/pi';
+import { PiArrowCircleDown, PiArrowCircleUp, PiCaretRightFill, PiCreditCard, PiMoon, PiSignOut, PiSun, PiToggleLeftFill, PiToggleLeftLight, PiToggleRightFill, PiUser } from 'react-icons/pi';
+import { useTheme } from '../../../../context/ThemeContext';
 
 const user = {
   nome: 'João Silva',
@@ -61,12 +62,12 @@ function PerfilHeader() {
 
         <div className="flex gap-2 items-center">
 
-          <button className="flex gap-1 text-sm items-center justify-center font-semibold p-2 rounded-md text-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 transition-colors">
+          <button className="flex gap-1 text-sm items-center justify-center font-semibold p-2 rounded-md text-emerald-500 hover:bg-emerald-100 dark:hover:bg-emerald-500/10 transition-colors">
             <PiArrowCircleDown />
             Sacar
           </button>
 
-          <button className="flex gap-1 text-sm items-center justify-center font-semibold bg-emerald-500 p-2 rounded-md text-black hover:bg-emerald-600 transition-colors">
+          <button className="flex gap-1 text-sm items-center justify-center font-semibold bg-emerald-500 p-2 rounded-md text-white dark:text-emerald-900 hover:bg-emerald-600 transition-colors">
             <PiArrowCircleUp />
             Depositar
           </button>
@@ -81,16 +82,45 @@ function PerfilHeader() {
 
 function PerfilBody() {
 
+  const { theme, toggleTheme } = useTheme();
+
   const configuracoes = [
-    { icone: <PiUser />, titulo: 'Conta', route: '/inicio/perfil' },
-    { icone: <PiCreditCard />, titulo: 'Pagamentos', route: '/inicio/cartoes' },
+    {
+      icone: <PiUser />,
+      titulo: 'Conta',
+      route: '/inicio/perfil',
+      style: 'route',
+    },
+    {
+      icone: <PiCreditCard />,
+      titulo: 'Pagamentos',
+      route: '/inicio/cartoes',
+      style: 'route',
+    },
+    {
+      icone: theme === 'light' ? <PiMoon /> : <PiSun />,
+      titulo: 'Tema',
+      onClick: toggleTheme,
+      style: 'switch',
+      switch: theme === 'light',
+    },
+    {
+      icone: <PiSignOut />,
+      titulo: 'Sair',
+      onClick: () => console.log('Sair'),
+      style: 'action',
+    }
   ]
 
   return (
     <div className="w-full flex flex-col bg-zinc-100 dark:bg-zinc-900 rounded-xl overflow-hidden">
 
       {configuracoes.map((configuracao, index) => (
-        <div key={index} className="flex gap-4 items-center p-4 justify-between hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+        <div
+          key={index}
+          className="flex gap-4 items-center p-4 justify-between hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors cursor-pointer text-zinc-700 dark:text-gray-300"
+          onClick={configuracao.onClick}
+        >
 
           <div className="flex gap-2 items-center">
 
@@ -98,15 +128,21 @@ function PerfilBody() {
               {configuracao.icone}
             </div>
 
-            <span className="text-lg font-semibold text-zinc-700 dark:text-gray-300">
+            <span className="text-lg font-semibold">
               {configuracao.titulo}
             </span>
 
           </div>
 
-          <div className="flex text-zinc-500">
-            <PiCaretRightFill />
-          </div>
+          {configuracao.style === 'switch' ? (
+            <div className="flex items-center gap-2 text-4xl">
+              {configuracao.switch ? <PiToggleRightFill /> : <PiToggleLeftFill />}
+            </div>
+          ) : (
+            <div className="flex">
+              <PiCaretRightFill />
+            </div>
+          )}
 
         </div>
       ))}
