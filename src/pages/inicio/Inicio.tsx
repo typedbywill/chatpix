@@ -5,7 +5,9 @@ import NavigationItems from './navigation/NavigationItems';
 function Inicio() {
   return (
     <div className="flex w-full h-full flex-col overflow-hidden">
+
       <Switch>
+        
         {NavigationItems.map((Item, index) => (
           <Route
             key={index}
