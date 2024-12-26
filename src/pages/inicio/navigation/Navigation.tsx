@@ -6,17 +6,31 @@ import { Link, useLocation } from 'react-router-dom'
 function Navigation() {
 
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isHidden, setIsHidden] = useState(false)
 
   const location = useLocation()
 
   useEffect(() => {
     const path = location.pathname
-    const index = NavigationItems.findIndex(item => path.includes(item.route))
-    setActiveIndex(index)
-  }, [location])
+
+    const currentItem = NavigationItems.find(item => path.includes(item.route))
+    if (!currentItem) return
+
+    const currentIndex = NavigationItems.indexOf(currentItem)
+    setActiveIndex(currentIndex)
+
+    if (path.includes('/inicio/conversas/')) {
+      setIsHidden(true)
+    } else {
+      setIsHidden(false)
+    }
+
+  }, [location.pathname])
 
   return (
-    <div className='flex w-full h-16 border-t border-gray-200 dark:border-zinc-800'>
+    <div className={clsx('flex w-full h-16 border-t border-gray-200 dark:border-zinc-800 z-[999] transition-all',
+      isHidden ? 'transform translate-y-16' : ''
+    )}>
       {NavigationItems.map((item, index) => (
         <RenderNavigationItem
           key={index}

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Chats() {
   return (
-    <div className='flex flex-col w-full h-full overflow-auto'>
+    <div className='flex flex-col w-full h-full overflow-auto z-0'>
       <ChatsHeader />
       <ChatsBody />
     </div>
