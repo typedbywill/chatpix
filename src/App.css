@@ -29,3 +29,8 @@
 .dark *::-webkit-scrollbar-thumb:hover {
   background: #4a4a50;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
